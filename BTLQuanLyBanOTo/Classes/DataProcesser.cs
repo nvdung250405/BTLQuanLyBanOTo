@@ -1,17 +1,34 @@
-﻿using System.Data;
+using System;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace BTLQuanLyBanOTo.Classes
 {
     internal class DataProcesser
     {
-        //
         private SqlConnection conn;
-        private string connectionString = "Server=Dung;Database=QuanLyCuaHangOto;Integrated Security=True";
+
+        public static string ConnectionString
+        {
+            get
+            {
+                try
+                {
+                    var setting = ConfigurationManager.ConnectionStrings["myConnectionString"];
+                    if (setting != null && !string.IsNullOrWhiteSpace(setting.ConnectionString))
+                    {
+                        return setting.ConnectionString;
+                    }
+                }
+                catch { }
+                return "Server=.;Database=QuanLyCuaHangOto;Integrated Security=True";
+            }
+        }
 
         public DataProcesser()
         {
-            conn = new SqlConnection(connectionString);
+            conn = new SqlConnection(ConnectionString);
         }
 
         //hàm tạo có đối nhân chuỗi kết nối

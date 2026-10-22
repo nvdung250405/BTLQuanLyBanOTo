@@ -1,4 +1,4 @@
-﻿using BTLQuanLyBanOTo.Classes;
+using BTLQuanLyBanOTo.Classes;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -157,7 +157,7 @@ namespace BTLQuanLyBanOTo.DanhMuc.DanhMucChung
                         return;
                     }
 
-                    string sql = "insert into SoChoNgoi(MaSCN,TenSCN,TrangThai) values(@ma,@ten,@tt)";
+                    string sql = "insert into SoChoNgoi(MaSoCho,TenSoCho,TrangThai) values(@ma,@ten,@tt)";
                     int r = dt.ExecuteNonQuery(sql, new SqlParameter[]
                     {
                         new SqlParameter("@ma", txtMa.Text.Trim()),
@@ -170,7 +170,7 @@ namespace BTLQuanLyBanOTo.DanhMuc.DanhMucChung
 
                 if (action == "edit")
                 {
-                    string sql = "update SoChoNgoi set TenSCN = @ten, TrangThai=@tt where MaSCN = @ma";
+                    string sql = "update SoChoNgoi set TenSoCho = @ten, TrangThai=@tt where MaSoCho = @ma";
                     int r = dt.ExecuteNonQuery(sql, new SqlParameter[]
                     {
                         new SqlParameter("@ma", txtMa.Text.Trim()),
@@ -186,7 +186,7 @@ namespace BTLQuanLyBanOTo.DanhMuc.DanhMucChung
                     DialogResult dr = MessageBox.Show("Bạn có chắc muốn xóa bản ghi này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (dr == DialogResult.No) return;
 
-                    string sql = "delete from SoChoNgoi where MaSCN = @ma";
+                    string sql = "delete from SoChoNgoi where MaSoCho = @ma";
                     int r = dt.ExecuteNonQuery(sql, new SqlParameter[]
                     {
                         new SqlParameter("@ma", txtMa.Text.Trim())
@@ -246,8 +246,8 @@ namespace BTLQuanLyBanOTo.DanhMuc.DanhMucChung
                 action = "cell_click";
 
                 var row = dgvSoChoNgoi.Rows[e.RowIndex];
-                txtMa.Text = row.Cells["MaSCN"].Value?.ToString();
-                txtTen.Text = row.Cells["TenSCN"].Value?.ToString();
+                txtMa.Text = row.Cells["MaSoCho"].Value?.ToString();
+                txtTen.Text = row.Cells["TenSoCho"].Value?.ToString();
                 var trangThaiValue = row.Cells["TrangThai"].Value;
                 TrangThai_HienTai = (trangThaiValue != null && trangThaiValue != DBNull.Value) ? Convert.ToInt32(trangThaiValue) : 1;
                 radHD.Checked = (TrangThai_HienTai == 1);

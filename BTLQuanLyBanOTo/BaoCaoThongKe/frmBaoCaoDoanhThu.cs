@@ -1,4 +1,4 @@
-﻿using BTLQuanLyBanOTo.Classes;
+using BTLQuanLyBanOTo.Classes;
 using System;
 using System.Data;
 using System.IO;
@@ -285,8 +285,8 @@ namespace BTLQuanLyBanOTo.BaoCaoThongKe
                 for (int i = 0; i < dgvChiTiet.Columns.Count; i++)
                 {
                     ws.Cells[4, i + 1] = dgvChiTiet.Columns[i].HeaderText;
-                    ws.Cells[4, i + 1].Font.Bold = true;
-                    ws.Cells[4, i + 1].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightBlue);
+                    ((Excel.Range)ws.Cells[4, i + 1]).Font.Bold = true;
+                    ((Excel.Range)ws.Cells[4, i + 1]).Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightBlue);
                 }
 
                 // Ghi dữ liệu

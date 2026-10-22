@@ -1,4 +1,4 @@
-﻿using BTLQuanLyBanOTo.Classes;
+using BTLQuanLyBanOTo.Classes;
 using BTLQuanLyBanOTo.DanhMuc;
 using System;
 using System.Data;
@@ -406,7 +406,7 @@ namespace BTLQuanLyBanOTo.NghiepVu
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            string connStr = "Server=Dung;Database=QuanLyCuaHangOto;Integrated Security=True";
+            string connStr = DataProcesser.ConnectionString;
 
             decimal tongTien = 0;
             string tongTienStr = txtTongTien.Text.Trim();
@@ -658,7 +658,7 @@ namespace BTLQuanLyBanOTo.NghiepVu
                 exSheet.Range["F" + (totalRow + 3)].Value = txtTongTien.Text;
                 exSheet.Range["E" + (totalRow + 3) + ":F" + (totalRow + 3)].Font.Bold = true;
 
-                exSheet.Columns["A:F"].AutoFit();
+                ((Excel.Range)exSheet.Columns["A:F"]).AutoFit();
                 exSheet.Range["A10:F" + lastDataRow].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
 
                 // Lưu và đóng ứng dụng
